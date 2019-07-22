@@ -4,7 +4,6 @@ import (
 	"context"
 
 	"cloud.google.com/go/storage"
-	"google.golang.org/api/option"
 
 	"github.com/spaceuptech/space-cloud/utils"
 )
@@ -15,8 +14,8 @@ type GCS struct {
 }
 
 // Init initializes a Google Cloud Storage client
-func Init(ctx context.Context, opts ...option.ClientOption) (*GCS, error) {
-	client, err := storage.NewClient(ctx, opts...)
+func Init() (*GCS, error) {
+	client, err := storage.NewClient(context.Background(), nil)
 	if err != nil {
 		return nil, err
 	}

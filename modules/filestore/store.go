@@ -11,6 +11,7 @@ import (
 
 	"github.com/spaceuptech/space-cloud/modules/auth"
 	"github.com/spaceuptech/space-cloud/modules/filestore/amazons3"
+	"github.com/spaceuptech/space-cloud/modules/filestore/googlecloudstorage"
 	"github.com/spaceuptech/space-cloud/modules/filestore/local"
 )
 
@@ -92,6 +93,8 @@ func initBlock(fileStoreType utils.FileStoreType, connection, endpoint string) (
 		return local.Init(connection)
 	case utils.AmazonS3:
 		return amazons3.Init(connection, endpoint) // connection is the aws region code
+	case utils.GoogleCloudStorage:
+		return googlecloudstorage.Init()
 	default:
 		return nil, utils.ErrInvalidParams
 	}
